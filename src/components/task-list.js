@@ -5,9 +5,9 @@ import { TodosCosumer } from "../to-do-context";
 export const TaskList = () => {
   return (
     <TodosCosumer>
-      {({ todoList, actions: { mark, remove } }) => (
+      {({ todoListState, actions: { mark, remove } }) => (
         <ol>
-          {todoList.map((task, i) => {
+          {todoListState.map((task, i) => {
             return (
               <li key={i}>
                 <span>
