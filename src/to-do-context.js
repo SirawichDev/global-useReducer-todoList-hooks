@@ -7,10 +7,11 @@ import {
   deleteAction
 } from "./components/todoReducer";
 import "./App.css";
+import { useLogger } from "./utils";
 
 const TodosContext = createContext(null);
 export function TodoProvider({ children }) {
-  const [todoList, dispatch] = useReducer(toDoReducer,initState);
+  const [todoListState, dispatch] = useReducer(useLogger(toDoReducer), initState);
   const actions = {
     add(text) {
       dispatch(addAction(text));
@@ -23,7 +24,7 @@ export function TodoProvider({ children }) {
     }
   };
   return (
-    <TodosContext.Provider value={{ todoList, actions }}>
+    <TodosContext.Provider value={{ todoListState, actions }}>
       {children}
     </TodosContext.Provider>
   );
